@@ -40,26 +40,26 @@ public class UserService implements CommunityConstant {
         return userMapper.selectByStudentNumber(stuNum);
     }
 
-    public Map<String,Object> register(User user){
-        Map<String,Object> map = new HashMap<>();
+    public Result register(User user){
+        Result res = new Result();
         //控制处理
         if(user == null){
-            map.put("msg","参数不能为空");
-            return map;
+            res.setMsg("参数不能为空");
+            return res;
         }
         if(StringUtils.isBlank(user.getStudentNumber())){
-             map.put("msg","账号不能为空");
-             return map;
+            res.setMsg("账号不能为空");
+             return res;
         }
         if(StringUtils.isBlank(user.getPassword())){
-            map.put("msg","密码不能为空");
-            return map;
+            res.setMsg("密码不能为空");
+            return res;
         }
         // 验证账号
         User u = userMapper.selectByStudentNumber(user.getStudentNumber());
         if (u != null) {
-            map.put("msg", "该账号已存在!");
-            return map;
+            res.setMsg("该账号已存在!");
+            return res;
         }
         // 注册用户
         user.setSalt(CommunityUtil.generateUUID().substring(0,5));
@@ -67,14 +67,17 @@ public class UserService implements CommunityConstant {
         user.setStatus(0);
         user.setHeaderUrl(String.format("http://images.nowcoder.com/head/%dt.png", new Random().nextInt(1000)));
         userMapper.insertUser(user);
-        return map;
+
+        res.setMsg("注册成功！");
+        res.setCode("0");
+        return res;
     }
     /**
      * 登录验证
      * @param password
      * @return
      */
-    public  Result login(String studentNumber, String password) {
+    public Result login(String studentNumber, String password) {
         Result res = new Result();
         // 空值处理
         if (StringUtils.isBlank(studentNumber)) {
@@ -99,6 +102,7 @@ public class UserService implements CommunityConstant {
             return res;
         }
         res.setData(user);
+        res.setMsg("登陆成功！");
         res.setCode("0");
         return res;
     }
@@ -115,6 +119,19 @@ public class UserService implements CommunityConstant {
     //更新用户头像路径
     public int updateHeader(String stuNum, String headerUrl){
         return userMapper.updateHeader(stuNum,headerUrl);
+    }
+
+    public Result updateUserInfo(User user){
+        Result res = new Result();
+        if(!StringUtils.isBlank(user.getUsername())){
+            userMapper.updateUsername(user.getStudentNumber(),user.getUsername());
+        }
+        if(!StringUtils.isBlank(user.getPhone())){
+            userMapper.updatePhone(user.getStudentNumber(),user.getPhone());
+        }
+        res.setMsg("修改成功");
+        res.setCode("0");
+        return res;
     }
 
     /**

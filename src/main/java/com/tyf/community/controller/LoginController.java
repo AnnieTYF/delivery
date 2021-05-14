@@ -52,20 +52,24 @@ public class LoginController implements CommunityConstant {
         return "/site/forget";
     }
 
-    @RequestMapping(path = "register", method = RequestMethod.POST)
+    @RequestMapping(path = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> register(@RequestBody Map<String,Object> data){
-        Map<String,Object> map = new HashMap<>();
+    public Result register(@RequestBody Map<String,Object> data){
+        Result res = new Result();
         User user = new User();
         String stuNum = (String) data.get("studentNumber");
+        String username = (String) data.get("username");
+        String phone = (String) data.get("phone");
         String password = (String) data.get("password");
         String pswConfirm = (String)data.get("pswConfirm");
         if(!password.equals(pswConfirm)){
-            map.put("msg","密码不一致，请重新输入");
-            return map;
+            res.setMsg("密码不一致，请重新输入");
+            return res;
             }
         user.setStudentNumber(stuNum);
         user.setPassword(password);
+        user.setUsername(username);
+        user.setPhone(phone);
         return userService.register(user);
     }
 
