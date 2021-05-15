@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tyf.community.dao.TaskMapper">
+
+    <sql id="insertFields">
+        user_post, title, content, status
+    </sql>
+
+    <sql id="selectFields">
+        id, user_post, title, content, status, user_get, create_time, update_time
+    </sql>
+
+
+    <select id="selectTaskById" resultType="Task">
+        select <include refid="selectFields"></include> from task where id = #{id}
+    </select>
+
+
+    <select id="selectTasksByUserPost" resultType="Task">
+        select <include refid="selectFields"></include>  from task where user_post = #{userPost}
+    </select>
+
+    <select id="selectTasksByUserGet" resultType="Task">
+        select <include refid="selectFields"></include>  from task where user_get = #{userGet}
+    </select>
+
+    <insert id="insertTask" parameterType="Task" keyProperty="id">
+        insert into task(<include refid="insertFields"></include>)
+        values(#{userPost}, #{title}, #{content}, #{status})
+    </insert>
+
+
+    <update id="updateTaskUserGet">
+        update task set user_get = #{userGet} where id = #{id}
+    </update>
+
+    <update id="updateTaskStatus">
+        update task set status = #{status} where id = #{id}
+    </update>
+
+    <update id="updateTaskContent">
+        update task set content = #{content} where id = #{id}
+    </update>
+
+    <update id="updateTaskTitle">
+        update task set title = #{title} where id = #{id}
+    </update>
+</mapper>

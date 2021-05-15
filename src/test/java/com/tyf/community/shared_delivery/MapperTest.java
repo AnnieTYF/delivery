@@ -1,11 +1,9 @@
 package com.tyf.community.shared_delivery;
 
 import com.tyf.community.CommunityApplication;
-import com.tyf.community.dao.CommentMapper;
-import com.tyf.community.dao.DiscussPostMapper;
-import com.tyf.community.dao.MessageMapper;
-import com.tyf.community.dao.UserMapper;
+import com.tyf.community.dao.*;
 import com.tyf.community.entity.Message;
+import com.tyf.community.entity.Task;
 import com.tyf.community.entity.User;
 import com.tyf.community.service.DiscussPostService;
 import org.junit.Test;
@@ -22,10 +20,10 @@ import java.util.List;
 @ContextConfiguration(classes = CommunityApplication.class)
 public class MapperTest {
 
-   @Autowired
-    private UserMapper userMapper;
-//    @Autowired
-//     private DiscussPostMapper discussPostMapper;
+//   @Autowired
+//    private UserMapper userMapper;
+    @Autowired
+    private TaskMapper taskMapper;
 //
 //    @Autowired
 //    private MessageMapper messageMapper;
@@ -34,23 +32,25 @@ public class MapperTest {
 //    @Autowired
 //    private DiscussPostService discussPostService;
 
-    @Test
-    public void testInsert(){
-
-       // User user = new User("31170056898","小A","123","123","12345678901",0,"http://static.nowcoder.com/images/head/notify.png");
-
-        System.out.println(userMapper.updatePassword("31170056898","321"));
-     //    System.out.println(userMapper.selectByStudentNumber("31170056898"));
-    }
-
 //    @Test
-//    public void testDiscussPost(){
-//        int count = commentMapper.selectCountByEntity(1,275);
-//        System.out.println(count);
-//        discussPostService.updateCommentCount(275,count);
-//       /* System.out.println(discussPostMapper.selectDiscussPostRows(0));
-//        System.out.println(discussPostMapper.selectDiscussPosts(0,1,2));*/
+//    public void testInsert(){
+//
+//       // User user = new User("31170056898","小A","123","123","12345678901",0,"http://static.nowcoder.com/images/head/notify.png");
+//
+//        System.out.println(userMapper.updatePassword("31170056898","321"));
+//     //    System.out.println(userMapper.selectByStudentNumber("31170056898"));
 //    }
+
+    @Test
+    public void testTask(){
+//        Task task = new Task();
+//        task.setUserPost("31170056898");
+//        task.setTitle("代领快递！");
+//        task.setContent("送达地点：广东工业大学西区，急需同学帮忙在广工西区丰巢快递4号柜领取快递，具体私聊！我的微信: 123456");
+//        task.setStatus(0);
+//        taskMapper.insertTask(task);
+        System.out.println(taskMapper.selectTaskById(3));
+    }
 //
 //    @Test
 //    public void testSelectLetters() {

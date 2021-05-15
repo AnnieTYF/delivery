@@ -6,6 +6,8 @@ import com.tyf.community.service.UserService;
 import com.tyf.community.util.CommunityConstant;
 import com.tyf.community.util.CommunityUtil;
 import com.tyf.community.util.RedisKeyUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-
+@Api(tags = "登录API")
 @Controller
 public class LoginController implements CommunityConstant {
 
@@ -52,6 +54,7 @@ public class LoginController implements CommunityConstant {
         return "/site/forget";
     }
 
+    @ApiOperation(value = "注册接口")
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     @ResponseBody
     public Result register(@RequestBody Map<String,Object> data){
@@ -102,6 +105,7 @@ public class LoginController implements CommunityConstant {
      * 登录验证
      * @return
      */
+    @ApiOperation(value = "登录接口")
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Result login(@RequestBody Map<String,Object> data, HttpServletRequest request, HttpServletResponse response){

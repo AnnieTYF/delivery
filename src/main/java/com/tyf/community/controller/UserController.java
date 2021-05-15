@@ -10,6 +10,7 @@ import com.tyf.community.service.UserService;
 import com.tyf.community.util.CommunityConstant;
 import com.tyf.community.util.CommunityUtil;
 import com.tyf.community.util.HostHolder;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +65,7 @@ public class UserController implements CommunityConstant {
      * @param headerImage
      * @return
      */
+    @ApiOperation(value = "上传图片接口")
     @LoginRequired
     @RequestMapping(path = "/upload",method = RequestMethod.POST)
     @ResponseBody
@@ -136,6 +138,7 @@ public class UserController implements CommunityConstant {
     }
 
     //个人主页
+    @ApiOperation(value = "修改个人主页接口")
     @RequestMapping(path = "/updateProfile", method = RequestMethod.POST)
     @ResponseBody
     public Result updateProfile(@RequestBody Map<String,Object> data){

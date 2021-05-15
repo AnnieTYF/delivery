@@ -1,7 +1,9 @@
 package com.tyf.community.entity;
 
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
 
+import java.util.Date;
+@ApiModel
 public class User {
 
     private int id;
