@@ -5,6 +5,7 @@ import com.tyf.community.dao.TaskMapper;
 import com.tyf.community.entity.DiscussPost;
 import com.tyf.community.entity.Result;
 import com.tyf.community.entity.Task;
+import com.tyf.community.util.CommunityConstant;
 import com.tyf.community.util.SensitiveFilter;
 import io.swagger.annotations.ApiModel;
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
+
+import java.util.List;
 
 @Service
 public class TaskService {
@@ -24,7 +27,7 @@ public class TaskService {
     @Autowired
     private SensitiveFilter sensitiveFilter;
 
-    public Result addTask(Task task){
+    public int addTask(Task task){
         if(task == null){
             throw new IllegalArgumentException("参数不能为空");
         }
@@ -35,23 +38,51 @@ public class TaskService {
         //过滤敏感词
         task.setTitle(sensitiveFilter.filter(task.getTitle()));
         task.setContent(sensitiveFilter.filter(task.getContent()));
-        try {
-            taskMapper.insertTask(task);
-            res.setMsg("发布任务成功");
-            res.setCode("0");
-        }catch (Exception e){
-            logger.error("发布任务失败" + e.getMessage());
-        }
-        return res;
+        return taskMapper.insertTask(task);
     }
 
-    public Result getTaskByUserPost(String stuNum){
+    public Result getSingleTask(Integer taskId){
         Result res = new Result();
-
+        Task task = taskMapper.selectTaskById(taskId);
+        res.setData(task);
+        res.setCode("0");
         return res;
     }
 
-    public Result updateTask(Task task){
+    public Result getTaskByUserPost(String userPost){
+        Result res = new Result();
+        List<Task> tasks = taskMapper.selectTasksByUserPost(userPost);
+        res.setData(tasks);
+        res.setCode("0");
+        return res;
+    }
+
+    public Result getTaskByUserGet(String userGet){
+        Result res = new Result();
+        List<Task> tasks = taskMapper.selectTasksByUserGet(userGet);
+        res.setData(tasks);
+        res.setCode("0");
+        return res;
+    }
+
+    public Result acceptTask(Integer taskId,String userGet){
+        Result res = new Result();
+        taskMapper.updateTaskStatus(taskId, CommunityConstant.TASK_ACCEPTED);
+        taskMapper.updateTaskUserGet(taskId,userGet);
+        res.setCode("0");
+        res.setMsg("接受任务成功");
+        return res;
+    }
+
+    public int deleteTask(Integer taskId){
+        return taskMapper.updateTaskStatus(taskId,CommunityConstant.TASK_DELETED);
+    }
+
+    public int completeTask(Integer taskId){
+        return taskMapper.updateTaskStatus(taskId,CommunityConstant.TASK_DONE);
+    }
+
+    public Result updateTaskInfo(Task task){
         Result res = new Result();
         if(StringUtils.isBlank(task.getTitle())){
             taskMapper.updateTaskTitle(task.getId(),task.getTitle());
@@ -59,6 +90,7 @@ public class TaskService {
         if(StringUtils.isBlank(task.getContent())){
             taskMapper.updateTaskContent(task.getId(),task.getContent());
         }
+        res.setCode("0");
         return res;
     }
 

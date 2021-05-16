@@ -20,7 +20,7 @@ public interface TaskMapper {
 
     int updateTaskUserGet(@Param("id")int id, @Param("userGet")String userGet);
 
-    int updateTaskStatus(@Param("id")int id, @Param("status")String status);
+    int updateTaskStatus(@Param("id")int id, @Param("status")Integer status);
 
     int updateTaskContent(@Param("id")int id, @Param("content")String content);
 

@@ -1,30 +1,6 @@
 package com.tyf.community.util;
 
 public interface CommunityConstant {
-
-    /**
-     * 激活成功
-     */
-    int ACTIVATION_SUCCESS = 0;
-    /**
-     * 重复激活
-     */
-    int ACTIVATION_REPEAT = 1;
-    /**
-     * 激活失败
-     */
-    int ACTIVATION_FAILURE = 2;
-
-    /**
-     * 默认状态的登录凭证超时时间
-     */
-    int DEFAULR_EXPIRED_SECONDS = 3600 * 12;
-
-    /**
-     * 勾选RememberMe后的凭证超时时间
-     */
-    int REMEMBER_EXPIRED_SECONDS = 3600 * 24 * 30;
-
     /**
      * 实体类型：帖子
      */
@@ -38,31 +14,17 @@ public interface CommunityConstant {
      * 实体类型：用户
      */
     int ENTITY_TYPE_USER = 3;
-
     /**
-     * 主题: 评论
+     * 任务已被接收，进行中
      */
-    String TOPIC_COMMENT = "comment";
-
+    int TASK_ACCEPTED = 1;
     /**
-     * 主题: 点赞
+     * 任务已完成
      */
-    String TOPIC_LIKE = "like";
-
+    int TASK_DONE = 2;
     /**
-     * 主题: 关注
+     * 任务删除
      */
-    String TOPIC_FOLLOW = "follow";
-
-    /**
-     * 主题：发帖
-     */
-    String TOPIC_PUBLISH = "publish";
-
-    /**
-     * 系统用户ID
-     */
-    int SYSTEM_USER_ID = 1;
-
+    int TASK_DELETED = 3;
 
 }

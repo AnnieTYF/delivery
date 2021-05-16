@@ -14,16 +14,22 @@
 
 
     <select id="selectTaskById" resultType="Task">
-        select <include refid="selectFields"></include> from task where id = #{id}
+        select <include refid="selectFields"></include> from task
+        where status != 3
+        and id = #{id}
     </select>
 
 
     <select id="selectTasksByUserPost" resultType="Task">
-        select <include refid="selectFields"></include>  from task where user_post = #{userPost}
+        select <include refid="selectFields"></include>  from task
+        where status != 3
+        and user_post = #{userPost}
     </select>
 
     <select id="selectTasksByUserGet" resultType="Task">
-        select <include refid="selectFields"></include>  from task where user_get = #{userGet}
+        select <include refid="selectFields"></include> from task
+        where status != 3
+        and user_get = #{userGet}
     </select>
 
     <insert id="insertTask" parameterType="Task" keyProperty="id">
