@@ -10,6 +10,7 @@ import com.tyf.community.service.UserService;
 import com.tyf.community.util.CommunityConstant;
 import com.tyf.community.util.CommunityUtil;
 import com.tyf.community.util.HostHolder;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
-
+@Api(value = "/user", tags = "用户API")
 @Controller
 @RequestMapping("/user")
 public class UserController implements CommunityConstant {
@@ -52,13 +53,6 @@ public class UserController implements CommunityConstant {
     private LikeService likeService;
     @Autowired
     private FollowService followService;
-
-
-    @LoginRequired
-    @RequestMapping(path = "/setting", method = RequestMethod.GET)
-    public String getSettingPage(){
-        return "/site/setting";
-    }
 
     /**
      * 上传图片接口
@@ -134,7 +128,6 @@ public class UserController implements CommunityConstant {
         }finally {
 
         }
-
     }
 
     //个人主页
