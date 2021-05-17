@@ -23,6 +23,7 @@ public class TaskController {
 
     @ApiOperation(value = "添加任务接口")
     @RequestMapping(path = "/addTask", method = RequestMethod.POST)
+    @ResponseBody
     public int addTask(@RequestBody TaskDto taskDto) {
         Task task = new Task();
         task.setUserPost(taskDto.getUserPost());
@@ -62,12 +63,14 @@ public class TaskController {
 
     @ApiOperation(value = "用户删除任务接口")
     @RequestMapping(path = "/deleteTask", method = RequestMethod.POST)
+    @ResponseBody
     public int deleteTask(@RequestParam("taskId") Integer taskId){
         return taskService.deleteTask(taskId);
     }
 
     @ApiOperation(value = "用户完成任务接口")
     @RequestMapping(path = "/completeTask", method = RequestMethod.POST)
+    @ResponseBody
     public int completeTask(@RequestParam("taskId") Integer taskId){
         return taskService.completeTask(taskId);
     }

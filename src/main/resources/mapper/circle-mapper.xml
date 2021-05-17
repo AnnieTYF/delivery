@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tyf.community.dao.CircleDao">
+
+    <sql id="insertFields">
+        name, manager
+    </sql>
+
+    <sql id="selectFields">
+        id, name, manager, create_time, update_time
+    </sql>
+
+    <insert id="insertCircle" parameterType="Circle" keyProperty="id">
+        insert into circle(<include refid="insertFields"></include>)
+        values(#{name}, #{manager})
+    </insert>
+
+    <select id="selectCircleById" resultType="Circle">
+        select <include refid="selectFields"></include> from circle
+        where id = #{id}
+    </select>
+
+    <select id="selectCircleByName" resultType="Circle">
+        select <include refid="selectFields"></include> from circle
+        where name LIKE CONCAT('%',#{name},'%')
+    </select>
+
+    <select id="selectCircleByManager" resultType="Circle">
+        select <include refid="selectFields"></include> from circle
+        where manager = #{manager}
+    </select>
+
+    <update id="updateCircleName">
+        update circle set name = #{name} where id = #{id}
+    </update>
+
+    <update id="updateCircleManager">
+        update circle set manager = #{manager} where id = #{id}
+    </update>
+
+</mapper>

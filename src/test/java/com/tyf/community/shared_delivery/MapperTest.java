@@ -2,6 +2,7 @@ package com.tyf.community.shared_delivery;
 
 import com.tyf.community.CommunityApplication;
 import com.tyf.community.dao.*;
+import com.tyf.community.entity.Circle;
 import com.tyf.community.entity.Message;
 import com.tyf.community.entity.Task;
 import com.tyf.community.entity.User;
@@ -24,6 +25,8 @@ public class MapperTest {
 //    private UserMapper userMapper;
     @Autowired
     private TaskMapper taskMapper;
+    @Autowired
+    private CircleDao circleDao;
 //
 //    @Autowired
 //    private MessageMapper messageMapper;
@@ -41,17 +44,24 @@ public class MapperTest {
 //     //    System.out.println(userMapper.selectByStudentNumber("31170056898"));
 //    }
 
+//    @Test
+//    public void testTask(){
+////        Task task = new Task();
+////        task.setUserPost("31170056898");
+////        task.setTitle("代领快递！");
+////        task.setContent("送达地点：广东工业大学西区，急需同学帮忙在广工西区丰巢快递4号柜领取快递，具体私聊！我的微信: 123456");
+////        task.setStatus(0);
+////        taskMapper.insertTask(task);
+//        System.out.println(taskMapper.selectTaskById(3));
+//    }
     @Test
-    public void testTask(){
-//        Task task = new Task();
-//        task.setUserPost("31170056898");
-//        task.setTitle("代领快递！");
-//        task.setContent("送达地点：广东工业大学西区，急需同学帮忙在广工西区丰巢快递4号柜领取快递，具体私聊！我的微信: 123456");
-//        task.setStatus(0);
-//        taskMapper.insertTask(task);
-        System.out.println(taskMapper.selectTaskById(3));
-    }
-//
+      public void testCircle(){
+//        Circle circle = new Circle();
+//        circle.setName("广东工业大学");
+//        circle.setManager("31170056898");
+//        circleDao.insertCircle(circle);
+        System.out.println(circleDao.selectCircleByName("广东"));
+      }
 //    @Test
 //    public void testSelectLetters() {
 //        List<Message> list = messageMapper.selectConversations(111, 0, 20);
