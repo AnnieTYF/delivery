@@ -1,13 +1,10 @@
 package com.tyf.community.service;
 
-import com.tyf.community.controller.UserController;
 import com.tyf.community.dao.TaskMapper;
-import com.tyf.community.entity.DiscussPost;
 import com.tyf.community.entity.Result;
 import com.tyf.community.entity.Task;
 import com.tyf.community.util.CommunityConstant;
 import com.tyf.community.util.SensitiveFilter;
-import io.swagger.annotations.ApiModel;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
