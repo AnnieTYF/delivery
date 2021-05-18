@@ -2,19 +2,12 @@ package com.tyf.community.shared_delivery;
 
 import com.tyf.community.CommunityApplication;
 import com.tyf.community.dao.*;
-import com.tyf.community.entity.Circle;
-import com.tyf.community.entity.Message;
-import com.tyf.community.entity.Task;
-import com.tyf.community.entity.User;
-import com.tyf.community.service.DiscussPostService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

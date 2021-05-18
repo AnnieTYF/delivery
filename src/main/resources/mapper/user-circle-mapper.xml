@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tyf.community.dao.UserCircleMapper">
+
+    <sql id="insertFields">
+        circle_id, user_id
+    </sql>
+
+    <sql id="selectFields">
+        circle_id, user_id, status
+    </sql>
+
+    <select id="selectCircleIdByUser" resultType="Integer">
+        select circle_id from user_circle
+        where user_id = #{stuNum}
+    </select>
+
+    <select id="selectUserIdByCircleId" resultType="String">
+        select user_id  from user_circle
+        where circle_id = #{circleId}
+    </select>
+
+    <insert id="insertUserCircle">
+        insert into user_circle (<include refid="insertFields"></include>)
+        values(#{circleId}, #{stuNum})
+    </insert>
+
+</mapper>

@@ -5,7 +5,7 @@
 <mapper namespace="com.tyf.community.dao.CircleDao">
 
     <sql id="insertFields">
-        name, manager
+        name, manager,
     </sql>
 
     <sql id="selectFields">

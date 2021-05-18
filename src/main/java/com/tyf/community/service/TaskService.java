@@ -49,6 +49,14 @@ public class TaskService {
         return res;
     }
 
+    public Result getTasksByCircle(Integer circleId){
+        Result res = new Result();
+        List<Task> tasks = taskMapper.selectTasksByCircle(circleId);
+        res.setData(tasks);
+        res.setCode("0");
+        return res;
+    }
+
     public Result getTaskByUserPost(String userPost){
         Result res = new Result();
         List<Task> tasks = taskMapper.selectTasksByUserPost(userPost);

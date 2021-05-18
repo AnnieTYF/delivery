@@ -5,11 +5,11 @@
 <mapper namespace="com.tyf.community.dao.TaskMapper">
 
     <sql id="insertFields">
-        user_post, title, content, status
+        user_post, title, content, status, circle_id
     </sql>
 
     <sql id="selectFields">
-        id, user_post, title, content, status, user_get, create_time, update_time
+        id, user_post, title, content, status, user_get, circle_id, create_time, update_time
     </sql>
 
 
@@ -19,6 +19,11 @@
         and id = #{id}
     </select>
 
+    <select id="selectTasksByCircle" resultType="Task">
+        select <include refid="selectFields"></include>  from task
+        where status = 0
+        and circle_id = #{circleId}
+    </select>
 
     <select id="selectTasksByUserPost" resultType="Task">
         select <include refid="selectFields"></include>  from task

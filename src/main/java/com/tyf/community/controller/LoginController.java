@@ -1,5 +1,6 @@
 package com.tyf.community.controller;
 
+import com.tyf.community.dto.UserDto;
 import com.tyf.community.entity.Result;
 import com.tyf.community.entity.User;
 import com.tyf.community.service.UserService;
@@ -57,14 +58,14 @@ public class LoginController implements CommunityConstant {
     @ApiOperation(value = "注册接口")
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public Result register(@RequestBody Map<String,Object> data){
+    public Result register(@RequestBody UserDto userDto){
         Result res = new Result();
         User user = new User();
-        String stuNum = (String) data.get("studentNumber");
-        String username = (String) data.get("username");
-        String phone = (String) data.get("phone");
-        String password = (String) data.get("password");
-        String pswConfirm = (String)data.get("pswConfirm");
+        String stuNum = userDto.getStudentNumber();
+        String username = userDto.getUsername();
+        String phone = userDto.getPhone();
+        String password = userDto.getPassword();
+        String pswConfirm = userDto.getPswConfirm();
         if(!password.equals(pswConfirm)){
             res.setMsg("密码不一致，请重新输入");
             return res;
@@ -90,7 +91,7 @@ public class LoginController implements CommunityConstant {
         // Map<String,Object> map = userService.forgetPassword(email,code,password);
         Map<String,Object> map = new HashMap<>();
          if(map == null || map.isEmpty()){
-             model.addAttribute("msg","密码修改成功。请重新登录");
+             model.addAttribute("msg","密码修改成功, 请重新登录");
              model.addAttribute("target","/index");
              return "/site/operate-result";
          }else{
@@ -108,10 +109,10 @@ public class LoginController implements CommunityConstant {
     @ApiOperation(value = "登录接口")
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public Result login(@RequestBody Map<String,Object> data, HttpServletRequest request, HttpServletResponse response){
+    public Result login(@RequestParam("studentNumber") String stuNum,
+                        @RequestParam("password")String password,
+                        HttpServletRequest request, HttpServletResponse response){
         //账号 + 密码
-        String stuNum = (String) data.get("studentNumber");
-        String password = (String) data.get("password");
         String sessionId = getCookies(request);
         if(sessionId == null){
             // 生成登录凭证

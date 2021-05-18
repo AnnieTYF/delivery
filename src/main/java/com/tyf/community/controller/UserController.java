@@ -1,15 +1,11 @@
 package com.tyf.community.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.tyf.community.annotation.LoginRequired;
 import com.tyf.community.entity.Result;
 import com.tyf.community.entity.User;
-import com.tyf.community.service.FollowService;
-import com.tyf.community.service.LikeService;
 import com.tyf.community.service.UserService;
 import com.tyf.community.util.CommunityConstant;
 import com.tyf.community.util.CommunityUtil;
-import com.tyf.community.util.HostHolder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,13 +41,6 @@ public class UserController implements CommunityConstant {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private HostHolder hostHolder;
-    @Autowired
-    private LikeService likeService;
-    @Autowired
-    private FollowService followService;
 
     /**
      * 上传图片接口

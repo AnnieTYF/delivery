@@ -17,14 +17,21 @@ public class CircleController {
     @Autowired
     private CircleService circleService;
 
-    @ApiOperation(value = "添加社交圈接口")
-    @RequestMapping(path = "/addCircle", method = RequestMethod.POST)
+    @ApiOperation(value = "新建社交圈接口")
+    @RequestMapping(path = "/createCircle", method = RequestMethod.POST)
     @ResponseBody
-    public int addCircle(@RequestBody CircleDto circleDto){
+    public int createCircle(@RequestBody CircleDto circleDto){
         Circle circle = new Circle();
         circle.setName(circleDto.getName());
         circle.setManager(circleDto.getManager());
-        return circleService.addCircle(circle);
+        return circleService.createCircle(circle);
+    }
+
+    @ApiOperation(value = "用户加入社交圈接口")
+    @RequestMapping(path = "/addCircle", method = RequestMethod.POST)
+    @ResponseBody
+    public int addCircle(@RequestParam("stuNum")String stuNum, @RequestParam("circleId")Integer circleId){
+        return circleService.addCircle(stuNum,circleId);
     }
 
     @ApiOperation(value = "根据名称查询社交圈接口")
@@ -39,5 +46,19 @@ public class CircleController {
     @ResponseBody
     public Result getCirclesByManager(@RequestParam("manager") String manager){
         return circleService.getCirclesByManager(manager);
+    }
+
+    @ApiOperation(value = "获取用户加入的社交圈列表接口")
+    @RequestMapping(path = "/getCircleListByUser", method = RequestMethod.POST)
+    @ResponseBody
+    public Result getCircleListByUser(@RequestParam("stuNum") String stuNum){
+        return circleService.getCircleListByUser(stuNum);
+    }
+
+    @ApiOperation(value = "获取社交圈中所有用户列表接口")
+    @RequestMapping(path = "/getUserListByCircle", method = RequestMethod.POST)
+    @ResponseBody
+    public Result getUserListByCircle(@RequestParam("circleId") Integer circleId){
+        return circleService.getUserListByCircle(circleId);
     }
 }

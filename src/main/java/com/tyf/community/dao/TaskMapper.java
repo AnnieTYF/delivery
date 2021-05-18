@@ -12,6 +12,8 @@ public interface TaskMapper {
 
     Task selectTaskById(@Param("id")int id);
 
+    List<Task> selectTasksByCircle(@Param("circleId")Integer circleId);
+
     List<Task> selectTasksByUserPost(@Param("userPost")String userPost);
 
     List<Task> selectTasksByUserGet(@Param("userGet")String userGet);

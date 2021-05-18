@@ -8,6 +8,7 @@ import com.tyf.community.service.TaskService;
 import com.tyf.community.util.CommunityUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,13 @@ public class TaskController {
     @ResponseBody
     public Result getSingleTask(@RequestParam("taskId") Integer taskId){
         return taskService.getSingleTask(taskId);
+    }
+
+    @ApiOperation(value = "获取某个社交圈下的所有任务信息接口")
+    @RequestMapping(path = "/getTasksByCircle", method = RequestMethod.POST)
+    @ResponseBody
+    public Result getTasksByCircle(@RequestParam("circleId") Integer circleId){
+        return taskService.getTasksByCircle(circleId);
     }
 
     @ApiOperation(value = "获取用户发布的所有任务接口")
