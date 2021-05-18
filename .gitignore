@@ -12,6 +12,10 @@ hs_err_pid*
 .mvn/
 mvnw
 mvnw.cmd
-target/
+target/classes
+target/generated-sources
+target/generated-test-sources
+target/test-classes
+target/community-0.0.1-SNAPSHOT
 
 
