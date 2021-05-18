@@ -18,6 +18,9 @@ public class TaskDto {
     @ApiModelProperty(value = "内容")
     private String content;
 
+    @ApiModelProperty(value = "社交圈Id")
+    private int circleId;
+
     public Integer getId() {
         return id;
     }
@@ -48,5 +51,13 @@ public class TaskDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getCircleId() {
+        return circleId;
+    }
+
+    public void setCircleId(int circleId) {
+        this.circleId = circleId;
     }
 }

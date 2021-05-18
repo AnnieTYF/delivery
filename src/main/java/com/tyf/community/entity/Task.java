@@ -16,6 +16,8 @@ public class Task {
 
     private int status;
 
+    private int circleId;
+
     private Date createTime;
 
     private Date updateTime;
@@ -85,6 +87,14 @@ public class Task {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public int getCircleId() {
+        return circleId;
+    }
+
+    public void setCircleId(int circleId) {
+        this.circleId = circleId;
     }
 
     @Override
