@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 @Api(value = "/user", tags = "用户API")
+@CrossOrigin(origins = "", maxAge = 3600)
 @Controller
 @RequestMapping("/user")
 public class UserController implements CommunityConstant {

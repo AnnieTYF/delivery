@@ -39,7 +39,7 @@
 
     <insert id="insertTask" parameterType="Task" keyProperty="id">
         insert into task(<include refid="insertFields"></include>)
-        values(#{userPost}, #{title}, #{content}, #{status})
+        values(#{userPost}, #{title}, #{content}, #{status},#{circle_id})
     </insert>
 
 

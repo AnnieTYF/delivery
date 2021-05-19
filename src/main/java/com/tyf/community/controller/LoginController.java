@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Api(tags = "登录API")
+@CrossOrigin
 @Controller
 public class LoginController implements CommunityConstant {
 
@@ -125,7 +126,7 @@ public class LoginController implements CommunityConstant {
                 logger.error("redis save user failed, [studentNo]="+stuNum);
             }
         }
-            return userService.login(stuNum,password);
+        return userService.login(stuNum,password);
     }
 
     public  String getCookies(HttpServletRequest request) {
@@ -150,9 +151,4 @@ public class LoginController implements CommunityConstant {
          userService.logout(ticket);
          return "redirect:/login";
     }
-
-
-
-
-
 }

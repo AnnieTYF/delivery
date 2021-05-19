@@ -10,10 +10,8 @@
 	</parent>
 	<groupId>com.tyf.community</groupId>
 	<artifactId>community</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>community</name>
 	<description>a community project</description>
-	<packaging>war</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -106,13 +104,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

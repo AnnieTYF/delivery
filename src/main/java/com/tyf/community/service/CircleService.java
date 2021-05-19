@@ -24,7 +24,9 @@ public class CircleService {
     private UserService userService;
 
     public int createCircle(Circle circle){
-        return circleDao.insertCircle(circle);
+        circleDao.insertCircle(circle);
+        userCircleMapper.insertUserCircle(circle.getManager(),circle.getId());
+        return circle.getId();
     }
 
     public Circle getCircle(Integer id){

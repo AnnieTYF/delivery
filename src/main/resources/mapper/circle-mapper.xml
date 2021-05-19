@@ -5,14 +5,14 @@
 <mapper namespace="com.tyf.community.dao.CircleDao">
 
     <sql id="insertFields">
-        name, manager,
+        name, manager
     </sql>
 
     <sql id="selectFields">
         id, name, manager, create_time, update_time
     </sql>
 
-    <insert id="insertCircle" parameterType="Circle" keyProperty="id">
+    <insert id="insertCircle" parameterType="Circle" keyProperty="id"  useGeneratedKeys="true">
         insert into circle(<include refid="insertFields"></include>)
         values(#{name}, #{manager})
     </insert>

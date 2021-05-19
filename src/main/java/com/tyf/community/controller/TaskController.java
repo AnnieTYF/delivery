@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 @Api(value = "/task", tags = "任务")
+@CrossOrigin(origins = "", maxAge = 3600)
 @Controller
 @RequestMapping("/task")
 public class TaskController {
