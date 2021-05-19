@@ -32,6 +32,7 @@ public class TaskController {
         task.setTitle(taskDto.getTitle());
         task.setContent(taskDto.getContent());
         task.setStatus(0);
+        task.setCircleId(taskDto.getCircleId());
         return taskService.addTask(task);
     }
 

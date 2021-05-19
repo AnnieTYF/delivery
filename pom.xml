@@ -10,7 +10,6 @@
 	</parent>
 	<groupId>com.tyf.community</groupId>
 	<artifactId>community</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>community</name>
 	<description>a community project</description>
 <!--	<packaging>war</packaging>-->
