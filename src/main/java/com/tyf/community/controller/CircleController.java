@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Api(value = "/circle", tags = "社交圈")
+@CrossOrigin(origins = "", maxAge = 3600)
 @Controller
 @RequestMapping("/circle")
 public class CircleController {
