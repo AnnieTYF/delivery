@@ -27,4 +27,8 @@ public interface CommunityConstant {
      */
     int TASK_DELETED = 3;
 
+    int REQUEST_SUCCESS = 1;
+
+    int REQUEST_FAILED = 0;
+
 }

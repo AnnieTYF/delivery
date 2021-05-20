@@ -6,6 +6,7 @@ import com.tyf.community.entity.Result;
 import com.tyf.community.service.CircleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class CircleController {
     @ApiOperation(value = "用户加入社交圈接口")
     @RequestMapping(path = "/addCircle", method = RequestMethod.POST)
     @ResponseBody
-    public int addCircle(@RequestParam("stuNum")String stuNum, @RequestParam("circleId")Integer circleId){
+    public Result addCircle(@RequestParam("stuNum")String stuNum, @RequestParam("circleId")Integer circleId){
         return circleService.addCircle(stuNum,circleId);
     }
 
@@ -62,4 +63,13 @@ public class CircleController {
     public Result getUserListByCircle(@RequestParam("circleId") Integer circleId){
         return circleService.getUserListByCircle(circleId);
     }
+
+    @ApiOperation(value = "判断用户是否加入社交圈接口")
+    @RequestMapping(path = "/getUserCircle", method = RequestMethod.POST)
+    @ResponseBody
+    public Result getUserCircle(@RequestParam("stuNum") String stuNum, @RequestParam("circleId") Integer circleId){
+        return circleService.getUserCircle(stuNum,circleId);
+    }
+
+
 }

@@ -45,20 +45,24 @@ public class UserService implements CommunityConstant {
         //控制处理
         if(user == null){
             res.setMsg("参数不能为空");
+            res.setCode(CommunityConstant.REQUEST_FAILED);
             return res;
         }
         if(StringUtils.isBlank(user.getStudentNumber())){
             res.setMsg("账号不能为空");
+            res.setCode(CommunityConstant.REQUEST_FAILED);
              return res;
         }
         if(StringUtils.isBlank(user.getPassword())){
             res.setMsg("密码不能为空");
+            res.setCode(CommunityConstant.REQUEST_FAILED);
             return res;
         }
         // 验证账号
         User u = userMapper.selectByStudentNumber(user.getStudentNumber());
         if (u != null) {
             res.setMsg("该账号已存在!");
+            res.setCode(CommunityConstant.REQUEST_FAILED);
             return res;
         }
         // 注册用户
@@ -69,7 +73,7 @@ public class UserService implements CommunityConstant {
         userMapper.insertUser(user);
 
         res.setMsg("注册成功！");
-        res.setCode("0");
+        res.setCode(CommunityConstant.REQUEST_SUCCESS);
         return res;
     }
     /**
@@ -82,16 +86,19 @@ public class UserService implements CommunityConstant {
         // 空值处理
         if (StringUtils.isBlank(studentNumber)) {
             res.setMsg("账号不能为空!");
+            res.setCode(CommunityConstant.REQUEST_FAILED);
             return res;
         }
         if (StringUtils.isBlank(password)) {
             res.setMsg("密码不能为空!");
+            res.setCode(CommunityConstant.REQUEST_FAILED);
             return res;
         }
         // 验证账号
         User user = userMapper.selectByStudentNumber(studentNumber);
         if (user == null) {
-           res.setMsg("该账号不存在!");
+            res.setMsg("该账号不存在!");
+            res.setCode(CommunityConstant.REQUEST_FAILED);
             return res;
         }
         // 验证密码
@@ -99,11 +106,12 @@ public class UserService implements CommunityConstant {
         System.out.println(password);
         if (!user.getPassword().equals(password)) {
             res.setMsg("密码不正确!");
+            res.setCode(CommunityConstant.REQUEST_FAILED);
             return res;
         }
         res.setData(user);
         res.setMsg("登陆成功！");
-        res.setCode("0");
+        res.setCode(CommunityConstant.REQUEST_SUCCESS);
         return res;
     }
 
@@ -130,7 +138,7 @@ public class UserService implements CommunityConstant {
             userMapper.updatePhone(user.getStudentNumber(),user.getPhone());
         }
         res.setMsg("修改成功");
-        res.setCode("0");
+        res.setCode(CommunityConstant.REQUEST_SUCCESS);
         return res;
     }
 

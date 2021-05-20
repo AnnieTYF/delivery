@@ -41,32 +41,48 @@ public class TaskService {
     public Result getSingleTask(Integer taskId){
         Result res = new Result();
         Task task = taskMapper.selectTaskById(taskId);
-        res.setData(task);
-        res.setCode("0");
+        if(task != null){
+            res.setData(task);
+            res.setCode(CommunityConstant.REQUEST_SUCCESS);
+        }else{
+            res.setCode(CommunityConstant.REQUEST_FAILED);
+        }
         return res;
     }
 
     public Result getTasksByCircle(Integer circleId){
         Result res = new Result();
         List<Task> tasks = taskMapper.selectTasksByCircle(circleId);
-        res.setData(tasks);
-        res.setCode("0");
+        if(tasks != null){
+            res.setData(tasks);
+            res.setCode(CommunityConstant.REQUEST_SUCCESS);
+        }else{
+            res.setCode(CommunityConstant.REQUEST_FAILED);
+        }
         return res;
     }
 
     public Result getTaskByUserPost(String userPost){
         Result res = new Result();
         List<Task> tasks = taskMapper.selectTasksByUserPost(userPost);
-        res.setData(tasks);
-        res.setCode("0");
+        if(tasks != null){
+            res.setData(tasks);
+            res.setCode(CommunityConstant.REQUEST_SUCCESS);
+        }else{
+            res.setCode(CommunityConstant.REQUEST_FAILED);
+        }
         return res;
     }
 
     public Result getTaskByUserGet(String userGet){
         Result res = new Result();
         List<Task> tasks = taskMapper.selectTasksByUserGet(userGet);
-        res.setData(tasks);
-        res.setCode("0");
+        if(tasks != null){
+            res.setData(tasks);
+            res.setCode(CommunityConstant.REQUEST_SUCCESS);
+        }else{
+            res.setCode(CommunityConstant.REQUEST_FAILED);
+        }
         return res;
     }
 
@@ -74,7 +90,7 @@ public class TaskService {
         Result res = new Result();
         taskMapper.updateTaskStatus(taskId, CommunityConstant.TASK_ACCEPTED);
         taskMapper.updateTaskUserGet(taskId,userGet);
-        res.setCode("0");
+        res.setCode(CommunityConstant.REQUEST_SUCCESS);
         res.setMsg("接受任务成功");
         return res;
     }
@@ -95,7 +111,7 @@ public class TaskService {
         if(StringUtils.isBlank(task.getContent())){
             taskMapper.updateTaskContent(task.getId(),task.getContent());
         }
-        res.setCode("0");
+        res.setCode(CommunityConstant.REQUEST_SUCCESS);
         return res;
     }
 

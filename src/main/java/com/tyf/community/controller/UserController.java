@@ -80,7 +80,7 @@ public class UserController implements CommunityConstant {
         String headerUrl = domain + contextPath + "/user/header/" + filename;
         userService.updateHeader(studentNum, headerUrl);
         res.setData(headerUrl);
-        res.setCode("0");
+        res.setCode(CommunityConstant.REQUEST_SUCCESS);
         return res;
     }
 

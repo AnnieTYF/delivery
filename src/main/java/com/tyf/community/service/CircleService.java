@@ -5,6 +5,7 @@ import com.tyf.community.dao.UserCircleMapper;
 import com.tyf.community.entity.Circle;
 import com.tyf.community.entity.Result;
 import com.tyf.community.entity.User;
+import com.tyf.community.util.CommunityConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,16 +37,24 @@ public class CircleService {
     public Result searchCircleByName(String name){
         Result res = new Result();
         List<Circle> circles = circleDao.selectCircleByName(name);
-        res.setData(circles);
-        res.setCode("0");
+        if(circles != null){
+            res.setData(circles);
+            res.setCode(CommunityConstant.REQUEST_SUCCESS);
+        }else{
+            res.setCode(CommunityConstant.REQUEST_FAILED);
+        }
         return res;
     }
 
     public Result getCirclesByManager(String manager) {
         Result res = new Result();
         List<Circle> circles = circleDao.selectCircleByManager(manager);
-        res.setData(circles);
-        res.setCode("0");
+        if(circles != null){
+            res.setData(circles);
+            res.setCode(CommunityConstant.REQUEST_SUCCESS);
+        }else{
+            res.setCode(CommunityConstant.REQUEST_FAILED);
+        }
         return res;
     }
 
@@ -57,7 +66,7 @@ public class CircleService {
             circleList.add(getCircle(circleId));
         }
         res.setData(circleList);
-        res.setCode("0");
+        res.setCode(CommunityConstant.REQUEST_SUCCESS);
         return res;
     }
 
@@ -69,11 +78,32 @@ public class CircleService {
             userList.add(userService.findUserByStuNum(userNum));
         }
         res.setData(userList);
-        res.setCode("0");
+        res.setCode(CommunityConstant.REQUEST_SUCCESS);
         return res;
     }
 
-    public int addCircle(String userNum, Integer circleId){
-        return userCircleMapper.insertUserCircle(userNum, circleId);
+    public Result addCircle(String userNum, Integer circleId){
+        Result res = new Result();
+        if(getUserCircle(userNum,circleId) == null){
+            userCircleMapper.insertUserCircle(userNum, circleId);
+            res.setCode(CommunityConstant.REQUEST_SUCCESS);
+            res.setMsg("加入成功");
+        }else{
+            res.setCode(CommunityConstant.REQUEST_FAILED);
+            res.setMsg("已经加入过啦");
+        }
+        return res;
+    }
+
+    public Result getUserCircle(String stuNum, Integer circleId){
+        Result res = new Result();
+        if(userCircleMapper.selectByCircleIdAndUserId(stuNum,circleId)!= null){
+            res.setCode(CommunityConstant.REQUEST_SUCCESS);
+            res.setMsg("用户已加入");
+        }else{
+            res.setCode(CommunityConstant.REQUEST_FAILED);
+            res.setMsg("用户未加入");
+        }
+        return res;
     }
 }
