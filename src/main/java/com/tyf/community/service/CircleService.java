@@ -84,7 +84,7 @@ public class CircleService {
 
     public Result addCircle(String userNum, Integer circleId){
         Result res = new Result();
-        if(getUserCircle(userNum,circleId) == null){
+        if(getUserCircle(userNum,circleId).getCode() == 0){
             userCircleMapper.insertUserCircle(userNum, circleId);
             res.setCode(CommunityConstant.REQUEST_SUCCESS);
             res.setMsg("加入成功");
